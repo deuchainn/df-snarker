@@ -11,36 +11,12 @@ import {
   RevealSnarkInput,
   revealSnarkWasmPath,
   revealSnarkZkeyPath,
-} from "@darkforest_eth/snarks";
+} from "@dfares/snarks";
 
 export async function getMoveArgs(
-  x1: number,
-  y1: number,
-  x2: number,
-  y2: number,
-  r: number,
-  distMax: number,
-  PLANETHASH_KEY: number,
-  SPACETYPE_KEY: number,
-  SCALE: number,
-  xMirror: number,
-  yMirror: number
+  input: MoveSnarkInput,
 ): Promise<SnarkJSProofAndSignals> {
   try {
-    const input: MoveSnarkInput = {
-      x1: x1.toString(),
-      y1: y1.toString(),
-      x2: x2.toString(),
-      y2: y2.toString(),
-      r: r.toString(),
-      distMax: distMax.toString(),
-      PLANETHASH_KEY: PLANETHASH_KEY.toString(),
-      SPACETYPE_KEY: SPACETYPE_KEY.toString(),
-      SCALE: SCALE.toString(),
-      xMirror: xMirror.toString(),
-      yMirror: yMirror.toString(),
-    };
-
     return await snarkjs.groth16.fullProve(
       input,
       moveSnarkWasmPath,
